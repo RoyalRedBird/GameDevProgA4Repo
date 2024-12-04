@@ -14,10 +14,19 @@ public class Player{
   boolean goingRight;
   boolean goingLeft;
   
+  boolean isGrounded;
+  
   void PlayerController(){
   
     DrawPlayer();
     PlayerPhysicsHandler();
+    
+    if(isGrounded){
+    
+      canJump = true;
+      canDoubleJump = true;
+    
+    }
     
   }
   
@@ -52,6 +61,7 @@ public class Player{
         playerVelocity.y = 5;
         canJump = false;
         jumpCooldownTimer = jumpInputCooldown;
+        isGrounded = false;
     
       }else if(canDoubleJump){
       
