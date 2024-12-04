@@ -17,7 +17,7 @@ public class Level{
   
     for(int i = 0; i < levelPlatforms.length; i++){
     
-      //levelPlatforms[i].DrawPlatform();
+      levelPlatforms[i].DrawPlatform();
     
     }
     
