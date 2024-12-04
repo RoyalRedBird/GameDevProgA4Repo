@@ -48,5 +48,12 @@ public class Platform{
     return platformRightBound;
   
   }
+  
+  void DrawPlatform(){
+  
+    fill (128, 128, 128);
+    rect(platformXPos, platformYPos, platformWidth, platformHeight);
+  
+  }
 
 }
