@@ -1,7 +1,7 @@
 void setup(){
 
-  rectMode(CORNER);
-  size(600, 400);
+  rectMode(CENTER);
+  size(800, 600);
   background(255,0,0);
 
 }
