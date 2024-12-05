@@ -16,7 +16,6 @@ public class Player{
   
   boolean isGrounded = false;
   boolean hitTheCeiling = false;
-  boolean hitWall = false;
   
   void PlayerController(){
   
@@ -31,13 +30,13 @@ public class Player{
     playerVelocity.y += gravityForce;
     
     if(goingRight){
-    
-      playerVelocity.x = 3;
       
+      playerVelocity.x = 3;
+            
     }else if(goingLeft){
     
       playerVelocity.x = -3;
-      
+            
     }else{
     
       playerVelocity.x = 0;
@@ -60,12 +59,6 @@ public class Player{
     
       playerVelocity.y = 0;
       
-    }
-    
-    if(hitWall){
-    
-      playerVelocity.x = 0;
-    
     }
     
     if(hitTheCeiling){
@@ -93,7 +86,7 @@ public class Player{
         
         playerVelocity.y = 0;
         playerVelocity.y += -5;
-        canDoubleJump = false;
+        //canDoubleJump = false;
         jumpCooldownTimer = jumpInputCooldown; 
         
       }

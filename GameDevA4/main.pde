@@ -7,7 +7,7 @@ void setup(){
   size(800, 600);
   background(0,0,0);
   
-  Platform plat1 = new Platform(400, 400, 200, 25);
+  Platform plat1 = new Platform(400, 400, 200, 50);
   Platform plat2 = new Platform(100, 400, 100, 600);
   Platform plat3 = new Platform(700, 400, 100, 600);
   

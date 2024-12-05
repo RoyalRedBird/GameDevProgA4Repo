@@ -39,31 +39,22 @@ public class Platform{
     playerOnLeft = false;
     playerOnRight = false;
   
-    if(player.playerPosition.x > platformLeftBound && player.playerPosition.x < platformRightBound){
+    if((player.playerPosition.x + 10) > platformLeftBound && (player.playerPosition.x - 10) < platformRightBound){
       
-      if((player.playerPosition.y - 10) <= platformUpperBound){
+      if((player.playerPosition.y + 10) <= platformUpperBound){
       
         playerAboveMe = true;
       
-      }else if((player.playerPosition.y + 10) >= platformLowerBound){
+        }else if((player.playerPosition.y - 30) >= platformYPos){
       
         playerUnderMe = true;
       
-      }
-    
-      if((player.playerPosition.y + 10) >= platformUpperBound && playerAboveMe){
+      }        
       
-        playerOnMe = true;
-        player.playerVelocity.y = 0;
-        player.isGrounded = true;
-        player.canJump = true;
-        player.canDoubleJump = true;
-        
-      }
-      
-      if((player.playerPosition.y - 10) <= platformLowerBound && playerUnderMe){
+      if((((player.playerPosition.y + player.playerVelocity.y) - 10) <= platformLowerBound) && playerUnderMe){
       
         player.playerVelocity.y = 0;
+        player.playerPosition.y = platformLowerBound + 10;
       
       }
       
@@ -73,31 +64,59 @@ public class Platform{
     
     }
     
-    if((player.playerPosition.x + 10) < platformLeftBound){
+    if((player.playerPosition.y + player.playerVelocity.y + 10) >= platformUpperBound && playerAboveMe){
+      
+          playerOnMe = true;
+          player.playerVelocity.y = 0;
+          player.playerPosition.y = platformUpperBound - 10;
+          player.isGrounded = true;
+          player.canJump = true;
+          player.canDoubleJump = true;
+        
+    }
+    
+    if(((player.playerPosition.x + 10) < platformXPos) && (!playerOnMe && !playerAboveMe && !playerUnderMe)){
       
         playerOnLeft = true;
-        println("There is a player on my left.");
         
         if((player.playerPosition.x + 10) >= platformLeftBound && playerOnLeft){
-      
-          println("Bonk!");
-          player.hitWall = true;
-      
+          
+          if(((player.playerPosition.y + 10) >= platformUpperBound) && ((player.playerPosition.y - 10) <= platformLowerBound)){
+               
+            if(!playerAboveMe && !playerUnderMe){
+            
+              println("Bonk!");
+              player.playerPosition.x = (platformLeftBound - 10);
+            
+            }
+               
+          }         
+     
         }
       
-      }else if((player.playerPosition.x - 10) > platformRightBound){
+      }
+      
+      
+      if(((player.playerPosition.x - 10) > platformXPos) && (!playerOnMe && !playerAboveMe && !playerUnderMe)){
       
         playerOnRight = true;
-        println("There is a player on my right.");
         
         if((player.playerPosition.x - 10) <= platformRightBound && playerOnRight){
       
-          println("Bonk!");
-          player.hitWall = true;
-      
+          if(((player.playerPosition.y + 10) >= platformUpperBound) && ((player.playerPosition.y - 10) <= platformLowerBound)){
+          
+            if(!playerAboveMe && !playerUnderMe){
+            
+              println("Bonk!");
+              player.playerPosition.x = (platformRightBound + 10); 
+            
+            }
+                                        
+          }
+               
         }
       
-      } 
+     }
   
   }
   
