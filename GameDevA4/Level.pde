@@ -22,7 +22,7 @@ public class Level{
     }
     
     fill(0, 0, 255);
-    rect(endGoalXPos, endGoalYPos, 100, 100);
+    rect(endGoalXPos, endGoalYPos, 50, 50);
   
   }
 
