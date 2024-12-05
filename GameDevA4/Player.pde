@@ -104,11 +104,11 @@ public class Player{
     
     boolean playerOnSomething = false;
 
-    for(int i = 0; i < testLevel.levelPlatforms.length; i++){
+    for(int i = 0; i < levelArray[levelSelector].levelPlatforms.length; i++){
     
-      testLevel.levelPlatforms[i].CheckForPlayer(protag);
+      levelArray[levelSelector].levelPlatforms[i].CheckForPlayer(protag);
       
-      if(testLevel.levelPlatforms[i].playerOnMe){
+      if(levelArray[levelSelector].levelPlatforms[i].playerOnMe){
       
         playerOnSomething = true;
       

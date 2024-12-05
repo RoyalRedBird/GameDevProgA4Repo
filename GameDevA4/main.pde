@@ -1,4 +1,6 @@
-Level testLevel;
+Level[] levelArray = new Level[5];
+int levelSelector = 0;
+
 Player protag;
 
 void setup(){
@@ -17,7 +19,7 @@ void setup(){
   testLevelPlats[2] = plat3;
   
   
-  testLevel = new Level(testLevelPlats, 400, 50);
+  levelArray[0] = new Level(testLevelPlats, 400, 50);
   protag = new Player();
   protag.playerPosition.x = 400;
   protag.playerPosition.y = 300;
@@ -28,7 +30,7 @@ void draw(){
 
   background(0,0,0);
   
-  testLevel.DrawLevel();
+  levelArray[levelSelector].DrawLevel();
   protag.PlayerController();
   
 
