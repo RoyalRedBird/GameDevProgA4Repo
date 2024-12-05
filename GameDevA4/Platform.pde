@@ -18,8 +18,8 @@ public class Platform{
   
   Platform(int xPos, int yPos, int pWidth, int pHeight){
   
-    platformXPos = xPos;
-    platformYPos = yPos;
+    platformXPos = xPos + (pWidth/2);
+    platformYPos = yPos + (pHeight/2);
     platformWidth = pWidth;
     platformHeight = pHeight;
     
@@ -45,7 +45,7 @@ public class Platform{
       
         playerAboveMe = true;
       
-        }else if((player.playerPosition.y - 30) >= platformYPos){
+        }else if((player.playerPosition.y - 10) >= platformYPos){
       
         playerUnderMe = true;
       

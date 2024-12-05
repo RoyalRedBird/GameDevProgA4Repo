@@ -5,11 +5,14 @@ public class Level{
   int endGoalXPos;
   int endGoalYPos;
   
-  Level(Platform[] platforms, int goalX, int goalY){
+  PVector playerStartLocation = new PVector(0, 0);
+  
+  Level(Platform[] platforms, int goalX, int goalY, PVector playerStart){
   
     levelPlatforms = platforms;
     endGoalXPos = goalX;
     endGoalYPos = goalY;
+    playerStartLocation = playerStart;
   
   }
   

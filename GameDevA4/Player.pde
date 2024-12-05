@@ -1,7 +1,8 @@
 public class Player{
 
   PVector playerPosition = new PVector(0, 0);
-  PVector playerVelocity = new PVector(0, 0);;
+  PVector playerVelocity = new PVector(0, 0);
+  PVector resetPoint = new PVector(0, 0);
   
   float gravityForce = 0.2;
   
@@ -22,7 +23,28 @@ public class Player{
     DrawPlayer();
     PlayerPhysicsHandler();
     PlayerCollisionChecker();
+    PlayerBoundsChecker();
     
+  }
+  
+  void PlayerBoundsChecker(){
+  
+    if(playerPosition.x <= 0 || playerPosition.x >= width){
+    
+      println("Resetting the player at " + resetPoint.x + ", " + resetPoint.y);
+      playerPosition.x = resetPoint.x;
+      playerPosition.y = resetPoint.y;
+    
+    }
+    
+    if(playerPosition.y > height){
+    
+      println("Resetting the player at " + resetPoint.x + ", " + resetPoint.y);
+      playerPosition.x = resetPoint.x;
+      playerPosition.y = resetPoint.y;
+    
+    }
+  
   }
   
   void PlayerPhysicsHandler(){
@@ -86,7 +108,7 @@ public class Player{
         
         playerVelocity.y = 0;
         playerVelocity.y += -5;
-        //canDoubleJump = false;
+        canDoubleJump = false;
         jumpCooldownTimer = jumpInputCooldown; 
         
       }
