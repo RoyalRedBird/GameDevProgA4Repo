@@ -1,9 +1,9 @@
-Level[] levelArray = new Level[4];
-int levelSelector = 0;
+Level[] levelArray = new Level[4]; //An array of level objects.
+int levelSelector = 0; //The current level being loaded and played.
 
-Player protag;
-boolean playerInGoal;
-boolean gameStart = false;
+Player protag; //The player character.
+boolean playerInGoal; //Flags if the player is in the end goal of the level.
+boolean gameStart = false; //Tracks if the game is in the playing state.
 
 
 void setup(){
@@ -14,11 +14,14 @@ void setup(){
   size(800, 600);
   background(0,0,0);
   
+  //The four levels are initialized in their own methods and loaded into the level array.
   CreateLevel1();
   CreateLevel2();
   CreateLevel3();
   CreateLevel4();
-  protag = new Player();
+  protag = new Player(); //The player is initialized.
+  
+  //The players position and their reset point is overridden by the start point of the level.
   protag.playerPosition = levelArray[levelSelector].playerStartLocation.copy();
   protag.resetPoint = levelArray[levelSelector].playerStartLocation.copy();
 
@@ -26,47 +29,55 @@ void setup(){
 
 void draw(){
 
+  //If the game has started and the tracker hasn't reached the end of the array.
   if(gameStart && levelSelector < levelArray.length){
   
     background(0,0,0);
-    
-    fill(255, 0, 0);
-    textSize(16);
   
+    //If the player is in the level goal.
     if(playerInGoal){
   
-    playerInGoal = false;
-    levelSelector++;
+      //Set the flag to false and increment to the next level.
+      playerInGoal = false;
+      levelSelector++;
         
-    if(levelSelector < levelArray.length){
+      //If we have yet to reach the end of the level array. 
+      if(levelSelector < levelArray.length){
           
-      protag.playerPosition = levelArray[levelSelector].playerStartLocation.copy();
-      protag.resetPoint = levelArray[levelSelector].playerStartLocation.copy();
+        //Reset the player when the level loads.
+        protag.playerPosition = levelArray[levelSelector].playerStartLocation.copy();
+        protag.resetPoint = levelArray[levelSelector].playerStartLocation.copy();
         
-      protag.ResetPlayer();
+        protag.ResetPlayer();
     
-    }
+      }
       
-  }
+    }
   
+  //If we have yet to reach the end of the level array. 
   if(levelSelector < levelArray.length){
   
+    //Draw the next level, manage the player and check if the player is in the end zone.
     levelArray[levelSelector].DrawLevel();
     protag.PlayerController();  
     levelArray[levelSelector].ClearZoneCheck(protag);
   
   } 
   
+  //If gameStart is true but the levelSelector has reached the end of the array.
   }else if(gameStart && levelSelector == levelArray.length){
   
+    //Display congratulations text and offer a restart.
     textSize(48);
     fill(0, 255, 0);
     text("You did it! \n\n Press space to restart.", 400, 300);
   
+  //If the game hasn't started.
   }else if(!gameStart){
   
     background(0,0,0);
     
+    //Display start text.
     textSize(64);
     fill(255, 0, 0);
     text("Platformer I Guess\n\nPress SPACE to start!", 400, 300);
@@ -75,6 +86,8 @@ void draw(){
 
 }
 
+//KeyPressed flags movement booleans in the Player class
+//In addition, it handles player resetting and starting/restarting the game.
 void keyPressed(){
 
   if(keyCode == RIGHT){
@@ -101,14 +114,17 @@ void keyPressed(){
   
   }
   
+  //On hit space...
   if(key == ' '){
   
+    //Start the game if it hasn't started.
     if(!gameStart){
     
       gameStart = true;
     
     }
     
+    //Restart the game if the game has ended.
     if(gameStart && levelSelector == levelArray.length){
     
       levelSelector = 0;
@@ -124,6 +140,7 @@ void keyPressed(){
 
 }
 
+//The keyReleased method is here to make sure the player can actually stop going left or right.
 void keyReleased(){
 
   if(keyCode == RIGHT){
@@ -140,8 +157,10 @@ void keyReleased(){
 
 }
 
+//Comments will only be written for the first level method.
 void CreateLevel1(){
 
+  //Each platform is instantiated manually. 
   Platform plat1 = new Platform(0, 500, 250, 30);
   Platform plat2 = new Platform(300, 425, 150, 30);
   Platform plat3 = new Platform(500, 350, 150, 30);
@@ -150,6 +169,7 @@ void CreateLevel1(){
   Platform plat6 = new Platform(300, 125, 150, 30);
   Platform plat7 = new Platform(700, 125, 150, 30);
   
+  //The platform array for the level is initialized and each platform is loaded manually.
   Platform[] testLevelPlats = new Platform[7];
   testLevelPlats[0] = plat1;
   testLevelPlats[1] = plat2;
@@ -159,7 +179,7 @@ void CreateLevel1(){
   testLevelPlats[5] = plat6;
   testLevelPlats[6] = plat7;
   
-  
+  //Assigns the level to its spot in the level array.
   levelArray[0] = new Level(testLevelPlats, 775, 100, new PVector(25, 425));
 
 }
