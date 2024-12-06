@@ -31,17 +31,13 @@ public class Player{
   
     if(playerPosition.x <= 0 || playerPosition.x >= width){
     
-      println("Resetting the player at " + resetPoint.x + ", " + resetPoint.y);
-      playerPosition.x = resetPoint.x;
-      playerPosition.y = resetPoint.y;
+      ResetPlayer();
     
     }
     
     if(playerPosition.y > height){
     
-      println("Resetting the player at " + resetPoint.x + ", " + resetPoint.y);
-      playerPosition.x = resetPoint.x;
-      playerPosition.y = resetPoint.y;
+      ResetPlayer();
     
     }
   
@@ -106,6 +102,7 @@ public class Player{
     
       }else if(canDoubleJump ){
         
+        isGrounded = false;
         playerVelocity.y = 0;
         playerVelocity.y += -5;
         canDoubleJump = false;
@@ -143,6 +140,14 @@ public class Player{
       protag.isGrounded = false;
     
     }
+  
+  }
+  
+  void ResetPlayer(){
+  
+      println("Resetting the player at " + resetPoint.x + ", " + resetPoint.y);
+      playerPosition.x = resetPoint.x;
+      playerPosition.y = resetPoint.y;
   
   }
 

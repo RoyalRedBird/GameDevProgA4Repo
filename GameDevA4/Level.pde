@@ -28,5 +28,19 @@ public class Level{
     rect(endGoalXPos, endGoalYPos, 50, 50);
   
   }
+  
+  void ClearZoneCheck(Player player){
+  
+    if((player.playerPosition.x > endGoalXPos - 25) && (player.playerPosition.x < endGoalXPos + 25)){
+    
+      if((player.playerPosition.y > endGoalYPos - 25) && (player.playerPosition.y < endGoalYPos + 25)){
+      
+        playerInGoal = true;
+      
+      }
+    
+    }
+  
+  }
 
 }
