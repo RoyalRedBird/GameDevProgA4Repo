@@ -85,7 +85,6 @@ public class Platform{
                
             if(!playerAboveMe && !playerUnderMe){
             
-              println("Bonk!");
               player.playerPosition.x = (platformLeftBound - 10);
             
             }
@@ -106,8 +105,7 @@ public class Platform{
           if(((player.playerPosition.y + 10) >= platformUpperBound) && ((player.playerPosition.y - 10) <= platformLowerBound)){
           
             if(!playerAboveMe && !playerUnderMe){
-            
-              println("Bonk!");
+
               player.playerPosition.x = (platformRightBound + 10); 
             
             }

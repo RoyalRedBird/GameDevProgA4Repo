@@ -145,7 +145,6 @@ public class Player{
   
   void ResetPlayer(){
   
-      println("Resetting the player at " + resetPoint.x + ", " + resetPoint.y);
       playerPosition.x = resetPoint.x;
       playerPosition.y = resetPoint.y;
   

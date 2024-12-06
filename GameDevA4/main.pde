@@ -1,12 +1,16 @@
-Level[] levelArray = new Level[5];
-int levelSelector = 1;
+Level[] levelArray = new Level[4];
+int levelSelector = 0;
 
 Player protag;
 boolean playerInGoal;
+boolean gameStart = false;
+
 
 void setup(){
 
+  frameRate(100);
   rectMode(CENTER);
+  textAlign(CENTER);
   size(800, 600);
   background(0,0,0);
   
@@ -22,24 +26,52 @@ void setup(){
 
 void draw(){
 
-  background(0,0,0);
+  if(gameStart && levelSelector < levelArray.length){
   
-  if(playerInGoal){
+    background(0,0,0);
+    
+    fill(255, 0, 0);
+    textSize(16);
+  
+    if(playerInGoal){
   
     playerInGoal = false;
     levelSelector++;
         
-    protag.playerPosition = levelArray[levelSelector].playerStartLocation.copy();
-    protag.resetPoint = levelArray[levelSelector].playerStartLocation.copy();
+    if(levelSelector < levelArray.length){
+          
+      protag.playerPosition = levelArray[levelSelector].playerStartLocation.copy();
+      protag.resetPoint = levelArray[levelSelector].playerStartLocation.copy();
         
-    protag.ResetPlayer();
-  
+      protag.ResetPlayer();
+    
+    }
+      
   }
   
-  levelArray[levelSelector].DrawLevel();
-  protag.PlayerController();
+  if(levelSelector < levelArray.length){
   
-  levelArray[levelSelector].ClearZoneCheck(protag);
+    levelArray[levelSelector].DrawLevel();
+    protag.PlayerController();  
+    levelArray[levelSelector].ClearZoneCheck(protag);
+  
+  } 
+  
+  }else if(gameStart && levelSelector == levelArray.length){
+  
+    textSize(48);
+    fill(0, 255, 0);
+    text("You did it! \n\n Press space to restart.", 400, 300);
+  
+  }else if(!gameStart){
+  
+    background(0,0,0);
+    
+    textSize(64);
+    fill(255, 0, 0);
+    text("Platformer I Guess\n\nPress SPACE to start!", 400, 300);
+  
+  } 
 
 }
 
@@ -67,6 +99,27 @@ void keyPressed(){
   
     protag.ResetPlayer();
   
+  }
+  
+  if(key == ' '){
+  
+    if(!gameStart){
+    
+      gameStart = true;
+    
+    }
+    
+    if(gameStart && levelSelector == levelArray.length){
+    
+      levelSelector = 0;
+      
+      protag.playerPosition = levelArray[levelSelector].playerStartLocation.copy();
+      protag.resetPoint = levelArray[levelSelector].playerStartLocation.copy();
+        
+      protag.ResetPlayer();
+    
+    }
+    
   }
 
 }
